@@ -21,23 +21,21 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInput.verticalInput > 0)
-        {
-            print("Going up");
-
-
-        }
-
-        if (PlayerInput.verticalInput < 0)
-        {
-            print("Going Down");
-
-
-        }
+        Tilt();
     }
 
-    private void Tilt(bool up)
+    private void Tilt()
     {
+        float input = PlayerInput.verticalInput;
+
+        Vector3 oldRotation = shipGraphics.transform.rotation.eulerAngles;
+
+        Vector3 newRotation = oldRotation;
+        newRotation.x += input * shipTiltSpeed;
+        newRotation.x = Mathf.Clamp(newRotation.x, -shipTiltAmount, shipTiltAmount);
+
+        shipGraphics.transform.rotation = Quaternion.Euler(newRotation);
+
 
     }
 }
