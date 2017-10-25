@@ -6,36 +6,31 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     public GameObject shipGraphics;
-
-    Quaternion defaultRotation;
-    public float shipTiltAmount;
-    public float shipTiltSpeed;
-
-    public float thrusterMax;
-    public float thrusterMin;
+    public ParticleSystem muzzleParticle;
+    public Animator anim;
 
     private void Start()
     {
-        defaultRotation = shipGraphics.transform.rotation;
     }
 
     private void Update()
     {
-        Tilt();
+        UpdateAnimatorValues();
     }
 
-    private void Tilt()
+    private void UpdateAnimatorValues()
     {
-        float input = PlayerInput.verticalInput;
+        anim.SetFloat("XSpeed", PlayerInput.horizontalInput);
+        anim.SetFloat("YSpeed", PlayerInput.verticalInput);
+    }
 
-        Vector3 oldRotation = shipGraphics.transform.rotation.eulerAngles;
+    private void Fire()
+    {
+        muzzleParticle.Play();
+    }
 
-        Vector3 newRotation = oldRotation;
-        newRotation.x += input * shipTiltSpeed;
-        newRotation.x = Mathf.Clamp(newRotation.x, -shipTiltAmount, shipTiltAmount);
-
-        shipGraphics.transform.rotation = Quaternion.Euler(newRotation);
-
-
+    private void SubscribeToEvents()
+    {
+        PlayerInput.Shoot += Fire;
     }
 }
