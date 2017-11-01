@@ -19,17 +19,12 @@ public class OptionsMenuScript : MonoBehaviour {
 		Bss = FindObjectsOfType<ButtonScript> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 
 	public void EnableOrDisablsStartMenuButtons()
 	{
 		foreach (GameObject button in StartMenuButtons) {
-			button.active = !button.active;
-			if (button.active) {
+			button.SetActive(!button.activeSelf);
+			if (button.activeSelf) {
 				foreach (ButtonScript Bs in Bss) {
 
 					Bs.currentY = 0f;
@@ -44,8 +39,8 @@ public class OptionsMenuScript : MonoBehaviour {
 	public void EnableOrDisablsOptionsMenuButtons()
 	{
 		foreach (GameObject button in OptionsMenuButtons) {
-			button.active = !button.active;
-			if (button.active) {
+            button.SetActive(!button.activeSelf);
+			if (button.activeSelf) {
 				foreach (ButtonScript Bs in Bss) {
 				
 					Bs.currentY = 430f;

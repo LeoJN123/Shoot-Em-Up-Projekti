@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33635061874831136}
   - component: {fileID: 135650349254808136}
   - component: {fileID: 23898678733330322}
+  - component: {fileID: 114292147878680518}
+  - component: {fileID: 54220651851379682}
   m_Layer: 8
   m_Name: Turret
   m_TagString: Untagged
@@ -84,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148495722562884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.87, y: 4.08, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4587295383093090}
@@ -97,7 +99,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1233434738188604}
-  m_LocalRotation: {x: 0, y: 0, z: 0.92718387, w: 0.37460664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -183,6 +185,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1169843672182408}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54220651851379682
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1148495722562884}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &114210692693536010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,11 +211,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976d0e34774ee624c9b5887bd3472d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pointer: {fileID: 0}
   instant: 0
   AnglesPerSecond: 100
+  SecondsBetweenShots: 2
+  turretLength: 1
+  shotSpeed: 0.25
+  projectileDecayTime: 10
+  projectile: {fileID: 1441653355773936, guid: 90cb301da5a031141bb1f86fe90eb4c1, type: 2}
   SectorWidth: 170
-  baseRotation: 136
+  baseRotation: 0
+--- !u!114 &114292147878680518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1148495722562884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94257b864ae7f0e4ca7907bb14e4d806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 10
 --- !u!114 &114784265895315874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ba60c4a3e91d846951a7b61b4f8987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  display: 1
 --- !u!135 &135650349254808136
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -217,7 +251,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148495722562884}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

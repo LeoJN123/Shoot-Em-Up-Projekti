@@ -11,6 +11,7 @@ public class PlayerShoot : MonoBehaviour {
     public GameObject projectile;
     public GameObject shipTurretPoint;
     public GameObject projectileContainer;
+    public ParticleSystem particleEffect;
 
     private void Start()
     {
@@ -30,8 +31,12 @@ public class PlayerShoot : MonoBehaviour {
         {
             if (projectile != null)
             {
-                Instantiate(projectile, shipTurretPoint.transform.position, Quaternion.identity, projectileContainer.transform);
-                
+                Instantiate(projectile, shipTurretPoint.transform.position, Quaternion.Euler(World.o.transform.right), projectileContainer.transform);
+                //GameObject pE = Instantiate(particleEffect); ..Ei näin
+                //pE.transform.parent = transform;
+                //pE.transform.position = shipTurretPoint.transform.position - new Vector3(.4f, 0f, 0f);
+                particleEffect.Play(true);
+
             }
 
             canFire = false;
